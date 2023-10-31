@@ -54,10 +54,20 @@
         const imgContainer = document.createElement('div');
         imgContainer.className = 'img-container';
 
-        for (let i = 1; i <= 6; i++) {
+        // Ganti path gambar dengan URL yang baru
+        const imgUrls = [
+          'https://ryadaru.github.io/naiii/foto/1.jpg',
+          'https://ryadaru.github.io/naiii/foto/2.jpg',
+          'https://ryadaru.github.io/naiii/foto/3.jpg',
+          'https://ryadaru.github.io/naiii/foto/4.jpg',
+          'https://ryadaru.github.io/naiii/foto/5.jpg',
+          'https://ryadaru.github.io/naiii/foto/6.jpg'
+        ];
+
+        for (let i = 0; i < imgUrls.length; i++) {
           const img = document.createElement('img');
-          img.src = `/foto/${i}.jpg`; // Ganti dengan path gambar yang sesuai
-          img.alt = `Foto Kita ${i}`;
+          img.src = imgUrls[i];
+          img.alt = `Foto Kita ${i + 1}`;
           imgContainer.appendChild(img);
         }
 
