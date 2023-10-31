@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foto Kita</title>
+  <style>
+    /* CSS untuk memposisikan gambar di tengah halaman */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .img-container {
+      display: flex;
+      animation: geserKeKiri 15s linear infinite; /* Ubah durasi dan timing sesuai kebutuhan */
+    }
+    img {
+      max-width: 100%; /* Membuat gambar responsif */
+      max-height: 70vh; /* Mengatur tinggi maksimum gambar */
+      margin: 10px;
+      transform: scale(1.2); /* Membuat gambar lebih besar */
+      transition: transform 1s; /* Efek transisi lambat */
+    }
+
+    @keyframes geserKeKiri {
+      0% {
+        transform: translateX(100%); /* Mulai dari luar layar sebelah kanan */
+      }
+      100% {
+        transform: translateX(-100%); /* Akhir di luar layar sebelah kiri */
+      }
+    }
+    
+  </style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+
+<script>
+  function tampilkanFoto() {
+    Swal.fire({
+      title: 'Mau lihat kenangan kita ga?',
+      text: 'Pilih ya dek Btw gwehj males ngasi lagu dsni nya',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Tampilkan foto di halaman jika pengguna mengklik "Iya"
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'img-container';
+
+        for (let i = 1; i <= 6; i++) {
+          const img = document.createElement('img');
+          img.src = `/foto/${i}.jpg`; // Ganti dengan path gambar yang sesuai
+          img.alt = `Foto Kita ${i}`;
+          imgContainer.appendChild(img);
+        }
+
+        document.body.appendChild(imgContainer);
+
+        // Tambahkan kode ini untuk menampilkan pesan "Selamat ulang tahun" dan "Selamat juga wisuda"
+        imgContainer.addEventListener('animationiteration', function() {
+          Swal.fire({
+            title: 'Selamat ulang tahun dan Selamat wisuda!',
+            text: 'Maaf aku belum bisa ngasih hadiah yang bagus buat kamu karena aku tidak sultan dan aku rata kiri',
+            icon: 'success'
+          });
+        });
+      } else {
+        // Pesan jika pengguna mengklik "Tidak"
+        Swal.fire('Oke', 'yaudah deh gpp :(', 'info');
+      }
+    });
+  }
+
+  // Panggil fungsi tampilkanFoto saat halaman dimuat
+  tampilkanFoto();
+</script>
+
+</body>
+</html>
